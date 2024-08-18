@@ -99,7 +99,7 @@ bot.start(async (ctx) => {
             reply_markup: {
                 keyboard: [
                     [{ text: "💰 Mon Solde 💰" }, { text: "Partager ↗️" }],
-                    [{ text: "Bonus 🎁" }],
+                    [{ text: "Bonus 🎁" }, { text: "🚩 Tâche" }],
                     [{ text: "Effectuer un Retrait 🏦" }],
                     [{ text: "📌 Ajoutez un numéro" }, { text: "📋 Procédure 📋" }]
                 ],
@@ -166,7 +166,7 @@ bot.on(message("text"), async (ctx) => {
                 reply_markup: {
                     keyboard: [
                         [{ text: "💰 Mon Solde 💰" }, { text: "Partager ↗️" }],
-                        [{ text: "Bonus 🎁" }],
+                        [{ text: "Bonus 🎁" }, { text: "🚩 Tâche" }],
                         [{ text: "Effectuer un Retrait 🏦" }],
                         [{ text: "📌 Ajoutez un numéro" }, { text: "📋 Procédure 📋" }]
                     ],
@@ -192,7 +192,7 @@ bot.on(message("text"), async (ctx) => {
             reply_markup: {
                 keyboard: [
                     [{ text: "💰 Mon Solde 💰" }, { text: "Partager ↗️" }],
-                    [{ text: "Bonus 🎁" }],
+                    [{ text: "Bonus 🎁" }, { text: "🚩 Tâche" }],
                     [{ text: "Effectuer un Retrait 🏦" }],
                     [{ text: "📌 Ajoutez un numéro" }, { text: "📋 Procédure 📋" }]
                 ],
@@ -208,7 +208,7 @@ bot.on(message("text"), async (ctx) => {
             reply_markup: {
                 keyboard: [
                     [{ text: "💰 Mon Solde 💰" }, { text: "Partager ↗️" }],
-                    [{ text: "Bonus 🎁" }],
+                    [{ text: "Bonus 🎁" }, { text: "🚩 Tâche" }],
                     [{ text: "Effectuer un Retrait 🏦" }],
                     [{ text: "📌 Ajoutez un numéro" }, { text: "📋 Procédure 📋" }]
                 ],
@@ -224,7 +224,7 @@ bot.on(message("text"), async (ctx) => {
             reply_markup: {
                 keyboard: [
                     [{ text: "💰 Mon Solde 💰" }, { text: "Partager ↗️" }],
-                    [{ text: "Bonus 🎁" }],
+                    [{ text: "Bonus 🎁" }, { text: "🚩 Tâche" }],
                     [{ text: "Effectuer un Retrait 🏦" }],
                     [{ text: "📌 Ajoutez un numéro" }, { text: "📋 Procédure 📋" }]
                 ],
