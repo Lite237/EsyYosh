@@ -261,97 +261,97 @@ bot.on(message("text"), async (ctx) => {
         return;
     }
 
-    // if (text === "🚩 Tâche" || text === "🚩 Task") {
-    //     const today = new Date();
-    //     const lastTaskDate = new Date(user.lastTaskDate);
+    if (text === "🚩 Tâche" || text === "🚩 Task") {
+        const today = new Date();
+        const lastTaskDate = new Date(user.lastTaskDate);
 
-    //     let availableTasks = [];
+        let availableTasks = [];
 
-    //     if (today.getDate() === lastTaskDate.getDate() && today.getMonth() === lastTaskDate.getMonth()) {
-    //         if (user.taskIds === "") {
-    //             await ctx.reply(lang[language_code].taskComplete);
+        if (today.getDate() === lastTaskDate.getDate() && today.getMonth() === lastTaskDate.getMonth()) {
+            if (user.taskIds === "") {
+                await ctx.reply(lang[language_code].taskComplete);
 
-    //             return;
-    //         }
+                return;
+            }
 
-    //         const currentTaskIds = user.taskIds.split("|");
+            const currentTaskIds = user.taskIds.split("|");
 
-    //         availableTasks = await prisma.task.findMany({
-    //             where: {
-    //                 id: {
-    //                     in: currentTaskIds
-    //                 }
-    //             },
-    //             orderBy: {
-    //                 priority: "desc"
-    //             }
-    //         })
+            availableTasks = await prisma.task.findMany({
+                where: {
+                    id: {
+                        in: currentTaskIds
+                    }
+                },
+                orderBy: {
+                    priority: "desc"
+                }
+            })
 
-    //     } else {
-    //         const completedTasks = await prisma.userTasks.findMany({
-    //             where: {
-    //                 userId: ctx.from.id.toString()
-    //             },
-    //             select: {
-    //                 taskId: true
-    //             }
-    //         })
+        } else {
+            const completedTasks = await prisma.userTasks.findMany({
+                where: {
+                    userId: ctx.from.id.toString()
+                },
+                select: {
+                    taskId: true
+                }
+            })
 
-    //         const completedTasksId = completedTasks.map((task) => task.taskId)
+            const completedTasksId = completedTasks.map((task) => task.taskId)
 
-    //         availableTasks = await prisma.task.findMany({
-    //             where: {
-    //                 NOT: {
-    //                     id: {
-    //                         in: completedTasksId
-    //                     }
-    //                 }
-    //             },
-    //             orderBy: {
-    //                 priority: "desc"
-    //             },
-    //             take: 2
-    //         })
+            availableTasks = await prisma.task.findMany({
+                where: {
+                    NOT: {
+                        id: {
+                            in: completedTasksId
+                        }
+                    }
+                },
+                orderBy: {
+                    priority: "desc"
+                },
+                take: 2
+            })
 
-    //         await prisma.user.update({
-    //             where: {
-    //                 userId: ctx.from.id.toString(),
-    //             },
-    //             data: {
-    //                 taskIds: availableTasks.map((task) => task.id).join("|"),
-    //                 lastTaskDate: new Date()
-    //             }
-    //         })
-    //     }
-
-
-    //     if (availableTasks.length === 0) {
-    //         await ctx.reply(lang[language_code].taskUnavailable);
-
-    //         return;
-    //     }
+            await prisma.user.update({
+                where: {
+                    userId: ctx.from.id.toString(),
+                },
+                data: {
+                    taskIds: availableTasks.map((task) => task.id).join("|"),
+                    lastTaskDate: new Date()
+                }
+            })
+        }
 
 
-    //     const displayTasks = availableTasks.reduce((curVal, task) => {
-    //         return curVal + `\n\n👉 ${task.link}\n💸 Gains: ${task.reward} FCFA`
-    //     }, "")
+        if (availableTasks.length === 0) {
+            await ctx.reply(lang[language_code].taskUnavailable);
 
-    //     const callback_data = availableTasks.reduce((curVal, task) => {
-    //         return curVal + `_${task.id}`
-    //     }, "task")
+            return;
+        }
 
-    //     await ctx.reply(lang[language_code].taskIntro);
-    //     await ctx.reply(`${lang[language_code].taskMain}:${displayTasks}\n\n${language_code === "fr" ? "Terminé" : "Done"}: ${2 - availableTasks.length}/2`, {
-    //         reply_markup: {
-    //             inline_keyboard: [
-    //                 [{ text: "✅ Check", callback_data }]
-    //             ]
-    //         },
-    //         link_preview_options: {
-    //             is_disabled: true
-    //         }
-    //     })
-    // }
+
+        const displayTasks = availableTasks.reduce((curVal, task) => {
+            return curVal + `\n\n👉 ${task.link}\n💸 Gains: ${task.reward} FCFA`
+        }, "")
+
+        const callback_data = availableTasks.reduce((curVal, task) => {
+            return curVal + `_${task.id}`
+        }, "task")
+
+        await ctx.reply(lang[language_code].taskIntro);
+        await ctx.reply(`${lang[language_code].taskMain}:${displayTasks}\n\n${language_code === "fr" ? "Terminé" : "Done"}: ${2 - availableTasks.length}/2`, {
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: "✅ Check", callback_data }]
+                ]
+            },
+            link_preview_options: {
+                is_disabled: true
+            }
+        })
+    }
 
     if (user?.status === "AddingNum") {
         await prisma.user.update({
