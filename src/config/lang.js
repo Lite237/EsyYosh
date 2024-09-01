@@ -1,7 +1,7 @@
 function getLinks() {
-    const LINKS = ["https://t.me/EasymoneyOficiel", "https://t.me/Easyretrait", "https://t.me/Easy_canal2"];
+    const LINKS = ["https://t.me/EasymoneyOficiel", "https://t.me/Easyretrait", "https://t.me/+5_T0uMbwvZUzN2E0", "https://t.me/Easy_canal2"];
 
-    return LINKS.reduce((prev, link) => prev + `👉 ${link}\n`, "");
+    return LINKS.reduce((prev, link) => prev + `👉 ${link}\n\n`, "");
 }
 
 const lang = {
